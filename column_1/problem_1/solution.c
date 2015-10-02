@@ -9,6 +9,8 @@
 #include <stdlib.h>
 #define LIMIT 1000 // Limit of the input.
 
+long numbers[LIMIT];
+
 int compare(const void * left, const void * right)
 {
   if( *(long*)left < *(long*)right ){
@@ -24,7 +26,6 @@ int main(int argc, const char * argv[])
 {
   FILE *file = fopen(argv[1], "r");
   char line[7];
-  long numbers[LIMIT];
   long i = 0;
 
   while(fgets(line, 1024, file)) {
