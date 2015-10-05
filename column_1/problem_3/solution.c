@@ -13,10 +13,16 @@ void set(int vector[], int v)
   vector[v >> 5] |= 1 << (v & 31); 
 }
 
+int exists(int vector[], int v)
+{
+  return 1 & vector[v >> 5] >> (v & 31);
+}
+
 int main(int argc, const char * argv[])
 {
   int vector[LIMIT] = { 0 };
   int i,j;
+  int number;
 
   FILE *file = fopen(argv[1], "r");
   char line[7];
@@ -27,8 +33,9 @@ int main(int argc, const char * argv[])
 
   for(i = 0; i < LIMIT; i++) {
     for(j = 0; j < 32; j ++) {
-      if((vector[i] >> j) & 1 == 1) {
-        printf("%d\n", (i << 5) + j); 
+      number = (i << 5) + j;
+      if(exists(vector, number)) {
+        printf("%d\n", number);
       }
     }
   }
